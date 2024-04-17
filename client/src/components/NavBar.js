@@ -10,9 +10,9 @@ const NavBar = () => {
           <Link to={"/"}>
             <h2>
               <span className="text-amber-400">
-                <strong className="text-xl">e</strong>vent
+                <strong className="text-xl">evento</strong>
               </span>
-              Perfect
+             
             </h2>
           </Link>
         </div>
