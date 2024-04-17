@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const NavBar = () => {
-  const [cart, setCart] = useState(0);
-
-  // Function to handle adding items to the cart
-  const handleAddToCart = () => {
-    // Implement your logic to add items to the cart
-    // For now, let's just increment the cart count
-    setCart(cart + 1);
-  };
-
   return (
     <header className="min-w-[1000px]">
       <div className="flex bg-primary text-white h-[60px]">
         {/* Left */}
         <div className="flex items-center m-4 mr-[24]">
           <Link to={"/"}>
-            <h2><span className="text-amber-400"><strong className="text-xl">e</strong>vent</span>Perfect</h2>
+            <h2>
+              <span className="text-amber-400">
+                <strong className="text-xl">e</strong>vent
+              </span>
+              Perfect
+            </h2>
           </Link>
         </div>
         {/* Middle */}
@@ -37,7 +33,10 @@ const NavBar = () => {
         <div className="flex items-center m-4">
           <div className="pr-4 pl-4">
             <p className="text-xs xl:text-sm ">Hello, sign in</p>
-            <Link to={"/Login"} className="text-sm xl:text-base font-bold cursor-pointer">
+            <Link
+              to={"/Login"}
+              className="text-sm xl:text-base font-bold cursor-pointer"
+            >
               Account
             </Link>
           </div>
