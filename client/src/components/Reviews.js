@@ -8,7 +8,8 @@ const Reviews = () => {
       fetch("/reviews")
         .then((response) => response.json())
         .then((data) => {
-          setReviews(data);
+          // setReviews(data);
+          console.log(data);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);

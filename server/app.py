@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import request, session, make_response
+from flask import request, session, make_response,jsonify
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 
@@ -129,8 +129,18 @@ class Logout(Resource):
 
 class Home(Resource):
     def get(self):
-        return '<h1>Code challenge</h1>'
+        events = Event.query.all()
+        event_data = [event.to_dict() for event in events]
+        return jsonify(event_data)
 
+class Home(Resource):
+    def get(self):
+        try:
+            events = Event.query.all()
+            event_data = [event.to_dict() for event in events]
+            return jsonify(event_data)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
 
 ### GET /organizers
 class Organizers(Resource):
@@ -174,7 +184,7 @@ class Events(Resource):
 
 # List of reviews
 ### GET /reviews
-class Reveiws(Resource):
+class Reviews(Resource):
     def get(self):
         reviews = [review.to_dict() for review in Review.query.all()]
 
@@ -262,7 +272,7 @@ api.add_resource(Logout, '/logout', endpoint='logout')
 api.add_resource(Organizers, '/organizers', endpoint='organizers')
 api.add_resource(Attendees, '/attendees', endpoint = 'attendees')
 api.add_resource(Events, '/events', endpoint = 'events')
-api.add_resource(Reveiws, '/reviews',  endpoint = 'reviews')
+api.add_resource(Reviews, '/reviews',  endpoint = 'reviews')
 api.add_resource(EventById, '/event/<int:id>', endpoint='eventbyids')
 api.add_resource(Organizer_attendees_by_id, '/organizer/attendees/<int:id>', endpoint='organizer_attendees_by_ids')
 api.add_resource(Event_attendees_by_id, '/event/attendees/<int:id>', endpoint='event_attendees_by_ids')

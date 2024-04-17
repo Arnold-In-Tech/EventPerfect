@@ -18,7 +18,7 @@ const NavBar = () => {
         {/* Middle */}
         <div className="flex grow relative items-center space-x-7">
           {/* Navigation links */}
-          <NavLink to="/dashboard" activeClassName="text-amber-400">
+          <NavLink to="/" activeClassName="text-amber-400">
             Dashboard
           </NavLink>
           <NavLink to="/events" activeClassName="text-amber-400">

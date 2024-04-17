@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
+from flask_cors import CORS 
 # N/B installed "pip3 install typing-extensions" before running "flask db init" else error "No such command init-db"
 
 app = Flask(__name__)
@@ -23,3 +24,5 @@ db.init_app(app)
 bcrypt = Bcrypt(app)
 
 api = Api(app)
+CORS(app)
+
