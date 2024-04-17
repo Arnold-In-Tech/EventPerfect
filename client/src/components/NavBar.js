@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const NavBar = () => {
@@ -12,7 +12,6 @@ const NavBar = () => {
               <span className="text-amber-400">
                 <strong className="text-xl">evento</strong>
               </span>
-             
             </h2>
           </Link>
         </div>
@@ -34,13 +33,12 @@ const NavBar = () => {
           <div className="pr-4 pl-4">
             <p className="text-xs xl:text-sm ">Hello, sign in</p>
             <Link
-              to={"/Login"}
+              to={"/login"}
               className="text-sm xl:text-base font-bold cursor-pointer"
             >
               Account
             </Link>
           </div>
-          {/* Wrap ShoppingCartIcon with Link and set to prop to the cart page */}
         </div>
       </div>
     </header>
