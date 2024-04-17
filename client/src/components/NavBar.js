@@ -15,13 +15,13 @@ const NavBar = () => {
     <header className="min-w-[1000px]">
       <div className="flex bg-primary text-white h-[60px]">
         {/* Left */}
-        <div className="flex items-center m-4">
+        <div className="flex items-center m-4 mr-[24]">
           <Link to={"/"}>
             <h2><span className="text-amber-400"><strong className="text-xl">e</strong>vent</span>Perfect</h2>
           </Link>
         </div>
         {/* Middle */}
-        <div className="flex grow relative items-center">
+        <div className="flex grow relative items-center space-x-7">
           {/* Navigation links */}
           <NavLink to="/dashboard" activeClassName="text-amber-400">
             Dashboard
