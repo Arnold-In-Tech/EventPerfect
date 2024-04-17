@@ -1,8 +1,20 @@
+import { Route, Routes } from "react-router-dom";
+// import LoginUser from './components/SignIn';
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
-export default function App() {
+function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+    <>
+    <NavBar/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/Login" element={<LoginUser />} /> */}
+      </Routes>
+      <Footer />
+    </>
+  );
 }
+
+export default App;
