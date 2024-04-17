@@ -16,9 +16,9 @@ const NavBar = () => {
           </Link>
         </div>
         {/* Middle */}
-        <div className="flex grow relative items-center space-x-7">
+        <div className="flex grow relative items-center space-x-12 ml-10">
           {/* Navigation links */}
-          <NavLink to="/dashboard" activeClassName="text-amber-400">
+          <NavLink to="/" activeClassName="text-amber-400">
             Dashboard
           </NavLink>
           <NavLink to="/events" activeClassName="text-amber-400">
