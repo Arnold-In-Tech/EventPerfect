@@ -4,18 +4,19 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const fetchData = () => {
-      fetch("/reviews")
-        .then((response) => response.json())
-        .then((data) => {
-          setReviews(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
-    };
-
-    fetchData();
+    fetch("/reviews") // Assuming your backend serves review data at '/reviews' endpoint
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch reviews");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setReviews(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching reviews:", error);
+      });
   }, []);
 
   return (
@@ -24,10 +25,14 @@ const Reviews = () => {
       <div className="grid grid-cols-3 gap-4">
         {reviews.map((review) => (
           <div key={review.id} className="bg-white rounded-md shadow-md p-4">
-            <h3 className="text-lg font-semibold">{review.title}</h3>
-            <p className="text-gray-600">{review.description}</p>
-            <p className="text-gray-500 mt-2">Rating: {review.rating}</p>
-            <p className="text-gray-500">Posted by: {review.user}</p>
+            <h3 className="text-lg font-semibold">Rating: {review.score}</h3>
+            <p className="text-gray-600">{review.comment}</p>
+            <p className="text-gray-500 mt-2">
+              Event Name: {review.event["name"]}
+            </p>
+            <p className="text-gray-500">
+              Attendee Name: {review.attendee["full_name"]}
+            </p>
           </div>
         ))}
       </div>

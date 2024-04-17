@@ -83,7 +83,7 @@ with app.app_context():
             logo='logo1.jpg',
             name='Tech Summit',
             location='Mombasa',
-            period='Period ',
+            period='22nd April, 2024 - 30th April, 2024',
             event_description='Come lets learn more about technology together.',
             organizer=organizer2,
             attendee = attendee1
@@ -94,7 +94,7 @@ with app.app_context():
             logo='logo2.jpg',
             name='Spreading Lung Cancer Awareness',
             location='KICC',
-            period='Period ',
+            period='30th September, 2024 - 2nd October, 2024 ',
             event_description='Together lets fight Cancer',
             organizer=organizer1,
             attendee = attendee2
