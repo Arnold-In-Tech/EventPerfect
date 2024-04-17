@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
 import AllEvents from "./components/AllEvents";
 import Reviews from "./components/Reviews";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/events" element={<AllEvents />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </>
