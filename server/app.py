@@ -3,6 +3,7 @@
 from flask import request, session, make_response
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
+from flask import jsonify
 
 from config import app, db, api
 from models import Organizer, Attendee, Event, Review
@@ -174,16 +175,20 @@ class Events(Resource):
 
 # List of reviews
 ### GET /reviews
-class Reveiws(Resource):
+class Reviews(Resource):
     def get(self):
         reviews = [review.to_dict() for review in Review.query.all()]
 
+        # Return reviews as JSON using Flask's jsonify
+        # return jsonify(reviews), 200
         response = make_response(
-            reviews,
+            jsonify(reviews),
             200,
             {"Content-Type": "application/json"},
-            )
+        )
         return response
+        
+
 
 
 # Event by ID
@@ -262,7 +267,7 @@ api.add_resource(Logout, '/logout', endpoint='logout')
 api.add_resource(Organizers, '/organizers', endpoint='organizers')
 api.add_resource(Attendees, '/attendees', endpoint = 'attendees')
 api.add_resource(Events, '/events', endpoint = 'events')
-api.add_resource(Reveiws, '/reviews',  endpoint = 'reviews')
+api.add_resource(Reviews, '/reviews',  endpoint = 'reviews')
 api.add_resource(EventById, '/event/<int:id>', endpoint='eventbyids')
 api.add_resource(Organizer_attendees_by_id, '/organizer/attendees/<int:id>', endpoint='organizer_attendees_by_ids')
 api.add_resource(Event_attendees_by_id, '/event/attendees/<int:id>', endpoint='event_attendees_by_ids')

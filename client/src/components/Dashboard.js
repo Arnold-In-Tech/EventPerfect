@@ -25,8 +25,8 @@ const Dashboard = () => {
         {events.map((event) => (
           <div key={event.id} className="bg-white rounded-md shadow-md p-4">
             <h3 className="text-lg font-semibold">{event.title}</h3>
-            <p className="text-gray-600">{event.description}</p>
-            <p className="text-gray-500 mt-2">Date: {event.date}</p>
+            <p className="text-gray-600">{event.event_description}</p>
+            <p className="text-gray-500 mt-2">Date: {event.period}</p>
             <p className="text-gray-500">Location: {event.location}</p>
           </div>
         ))}
