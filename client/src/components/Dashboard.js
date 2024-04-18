@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4 ml-4 text-fourth"><GiHamburgerMenu className="inline mr-4"/>Dashboard</h2>
+      <h2 className="text-2xl font-bold mb-4 ml-4 text-fourth">Dashboard</h2>
       <div className="grid grid-cols-3 gap-4">
         {events.map((event) => (
           <div key={event.id} className="bg-white rounded-md shadow-md p-4">
