@@ -24,8 +24,8 @@ const Reviews = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4 ml-4 text-fourth"><MdReviews className="inline mr-4"/>Reviews</h2>
-      <div className="grid grid-cols-1 p-36 space-y-6">
+      <h2 className="text-2xl font-bold mb-1 ml-4 text-fourth"><MdReviews className="inline mr-4"/>Reviews</h2>
+      <div className="grid grid-cols-2 p-12 gap-4 space-y-6">
         {reviews.map((review) => (
           <div key={review.id} className="bg-white rounded-md shadow-md p-4">
             <p className="text-fourth ">
