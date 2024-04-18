@@ -178,16 +178,26 @@ class Events(Resource):
 class Reviews(Resource):
     def get(self):
         reviews = [review.to_dict() for review in Review.query.all()]
-
-        # Return reviews as JSON using Flask's jsonify
-        # return jsonify(reviews), 200
         response = make_response(
             jsonify(reviews),
             200,
             {"Content-Type": "application/json"},
         )
         return response
-        
+
+    def post(self):
+        data = request.get_json()
+        new_review = Review(
+            score=data.get('score'),
+            comment=data.get('comment'),
+            event_id=data.get('events.names'),
+            attendee_id=data.get('attendees.full_name')
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict(), 201
+
+api.add_resource(Reviews, '/reviews',  endpoint='reviews')
 
 
 
@@ -267,7 +277,7 @@ api.add_resource(Logout, '/logout', endpoint='logout')
 api.add_resource(Organizers, '/organizers', endpoint='organizers')
 api.add_resource(Attendees, '/attendees', endpoint = 'attendees')
 api.add_resource(Events, '/events', endpoint = 'events')
-api.add_resource(Reviews, '/reviews',  endpoint = 'reviews')
+# api.add_resource(Reviews, '/reviews',  endpoint = 'reviews')
 api.add_resource(EventById, '/event/<int:id>', endpoint='eventbyids')
 api.add_resource(Organizer_attendees_by_id, '/organizer/attendees/<int:id>', endpoint='organizer_attendees_by_ids')
 api.add_resource(Event_attendees_by_id, '/event/attendees/<int:id>', endpoint='event_attendees_by_ids')
