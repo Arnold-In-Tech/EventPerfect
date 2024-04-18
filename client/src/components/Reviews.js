@@ -25,7 +25,7 @@ const Reviews = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4 ml-4 text-fourth"><MdReviews className="inline mr-4"/>Reviews</h2>
-      <div className="grid grid-cols-1 p-28 space-y-6">
+      <div className="grid grid-cols-1 p-36 space-y-6">
         {reviews.map((review) => (
           <div key={review.id} className="bg-white rounded-md shadow-md p-4">
             <p className="text-fourth ">
@@ -34,7 +34,7 @@ const Reviews = () => {
             <p className="text-fourth text-md font-bold mt-2">
               {review.event.name}
             </p>
-            <p className="text-fourth font-style: italic">"{review.comment}"</p>
+            <p className="text-fourth italic text-sm mt-2 mb-2">"{review.comment}"</p>
             <div className="flex items-center">
               {[...Array(5)].map((_, index) => {
                 const starValue = index + 1;
