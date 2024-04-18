@@ -41,7 +41,12 @@ const Reviews = () => {
       },
       body: JSON.stringify(newReview),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
         setReviews([...reviews, data]);
         setNewReview({ score: 0, comment: "", attendee: { full_name: "" }, event: { name: "" } });
