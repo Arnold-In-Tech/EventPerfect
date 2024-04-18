@@ -84,9 +84,9 @@ const Reviews = () => {
       </div>
       <form onSubmit={handleSubmit} className="bg-white rounded-md shadow-md p-12 w-1/2" ml-24>
         <h3 className="text-lg font-bold mb-2">Review an event</h3>
-        <input type="text" name="attendee" value={newReview.attendee.full_name} onChange={handleInputChange} placeholder="Enter your Name" className="border rounded-md p-2 mb-2 block w-full" />
-        <input type="text" name="event" value={newReview.event.name} onChange={handleInputChange} placeholder="Enter the name of the event" className="border rounded-md p-2 mb-2 block w-full" />
-        <textarea name="comment" value={newReview.comment} onChange={handleInputChange} placeholder="Please give us your Review" rows="4" className="border rounded-md p-2 mb-2 block w-full"></textarea>
+        <input type="text" name="attendee" value={newReview.attendee.full_name} onChange={handleInputChange} placeholder="Enter your full name" className="border rounded-md p-2 mb-2 block w-full" />
+        <input type="text" name="event" value={newReview.event.name} onChange={handleInputChange} placeholder="Enter the name of the event your want to review" className="border rounded-md p-2 mb-2 block w-full" />
+        <textarea name="comment" value={newReview.comment} onChange={handleInputChange} placeholder="Please give us your review" rows="4" className="border rounded-md p-2 mb-2 block w-full"></textarea>
         <div className="flex items-center mb-2">
           {[...Array(5)].map((_, index) => {
             const starValue = index + 1;
