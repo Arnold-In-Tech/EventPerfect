@@ -40,7 +40,7 @@ function MyEvents() {
   };
 
   return (
-    <div className="ml-8">
+    <div className="ml-8 mt-8">
       <h2 className="text-2xl font-bold mb-4 ml-4"><FaNoteSticky className='inline mr-4'/>My Events</h2>
       <ul className="grid grid-cols-2 gap-x-8 gap-y-4 p-4">
         {events.map((event) => (

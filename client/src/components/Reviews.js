@@ -57,7 +57,7 @@ const Reviews = () => {
   };
 
   return (
-    <div>
+    <div className="mt-8">
       <h2 className="text-2xl font-bold mb-1 ml-4 text-fourth"><MdReviews className="inline mr-4"/>Reviews</h2>
       <div className="grid grid-cols-2 p-12 gap-4 space-y-6">
         {reviews.map((review) => (

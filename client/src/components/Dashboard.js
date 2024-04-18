@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import { FaCalendar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Carousel from "./Carousel";
+import LandingPage from "./Landing_page";
+import Gallery from "./Gallery";
+import AllEvents from "./AllEvents";
+import MyEvents from "./My_events";
+import Reviews from "./Reviews";
 
 const Dashboard = () => {
   const [events, setEvents] = useState([]);
@@ -22,9 +28,12 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4 ml-4 text-fourth">Dashboard</h2>
-      <div className="grid grid-cols-3 gap-4">
+    <div className="mt-8">
+      {/* <Carousel /> */}
+      <LandingPage />
+      <Gallery />
+      <h2 className="text-4xl font-bold mb-4 mt-8 text-center ml-4 text-fourth">Upcoming Events</h2>
+      <div className="grid grid-cols-2 gap-4 p-8">
         {events.map((event) => (
           <div key={event.id} className="bg-white rounded-md shadow-md p-4">
             <h3 className="text-lg text-fourth font-semibold">{event.title}</h3>
@@ -34,6 +43,9 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
+      <AllEvents />
+      <MyEvents />
+      <Reviews />
     </div>
   );
 };
