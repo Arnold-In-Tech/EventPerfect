@@ -4,12 +4,12 @@ import { NavLink, Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <header className="min-w-[1000px]">
-      <div className="flex bg-primary text-white h-[60px]">
+      <div className="flex bg-primary text-black h-[60px] mb-4">
         {/* Left */}
         <div className="flex items-center m-4 mr-[24]">
           <Link to={"/"}>
             <h2>
-              <span className="text-amber-400">
+              <span className="text-secondary">
                 <strong className="text-xl">evento</strong>
               </span>
             </h2>
