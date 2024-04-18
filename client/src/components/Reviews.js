@@ -21,18 +21,18 @@ const Reviews = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+      <h2 className="text-2xl font-bold mb-4 ml-4 text-gray-500">Reviews</h2>
       <div className="grid grid-cols-3 gap-4">
         {reviews.map((review) => (
           <div key={review.id} className="bg-white rounded-md shadow-md p-4">
-            <h3 className="text-lg font-semibold">Rating: {review.score}</h3>
-            <p className="text-gray-600">{review.comment}</p>
-            <p className="text-gray-500 mt-2">
-              Event Name: {review.event["name"]}
+            <p className="text-gray-500 text-md font-bold mt-2">
+              {review.event["name"]}
             </p>
-            <p className="text-gray-500">
-              Attendee Name: {review.attendee["full_name"]}
+            <p className="text-gray-600 font-style: italic">"{review.comment}"</p>
+            <p className="text-gray-500 ml-32">
+              ~ {review.attendee["full_name"]}
             </p>
+            <h3 className="text-sm text-gray-500 font-medium ">Rating: {review.score}/10</h3>
           </div>
         ))}
       </div>
