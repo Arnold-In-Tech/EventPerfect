@@ -24,14 +24,14 @@ const Reviews = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4 ml-4 text-fourth"><MdReviews className="inline mr-4"/>Reviews</h2>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         {reviews.map((review) => (
           <div key={review.id} className="bg-white rounded-md shadow-md p-4">
             <p className="text-fourth text-md font-bold mt-2">
               {review.event.name}
             </p>
             <p className="text-fourth font-style: italic">"{review.comment}"</p>
-            <p className="text-fourth ml-32">
+            <p className="text-fourth ml-72">
               ~ {review.attendee.full_name}
             </p>
             <div className="flex items-center">
