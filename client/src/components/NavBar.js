@@ -24,6 +24,12 @@ const NavBar = () => {
           <NavLink to="/events" activeClassName="text-amber-400">
             All Events
           </NavLink>
+          <NavLink to="/create_event" activeClassName="text-amber-400">
+            Create Events
+          </NavLink>
+          <NavLink to="/my_events" activeClassName="text-amber-400">
+            My Events
+          </NavLink>
           <NavLink to="/reviews" activeClassName="text-amber-400">
             Reviews
           </NavLink>
