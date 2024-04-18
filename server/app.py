@@ -171,6 +171,24 @@ class Events(Resource):
             {"Content-Type": "application/json"},
             )
         return response
+    def post(self):
+        data = request.get_json()
+        new_event = Event(
+            title=data.get('title'),
+            logo=data.get('logo'),
+            name=data.get('name'),
+            location=data.get('location'),
+            period=data.get('period'),
+            event_description=data.get('event_description'),
+            organizer_id=data.get('organizer_id'),
+            attendee_id=data.get('attendee_id')
+        )
+        db.session.add(new_event)
+        db.session.commit()
+        return new_event.to_dict(), 201
+    
+    
+   
 
 
 # List of reviews
@@ -184,19 +202,25 @@ class Reviews(Resource):
             {"Content-Type": "application/json"},
         )
         return response
-
     def post(self):
         data = request.get_json()
         new_review = Review(
             score=data.get('score'),
             comment=data.get('comment'),
-            event_id=data.get('events.names'),
-            attendee_id=data.get('attendees.full_name')
+            event_id=data.get('event_id'),
+            attendee_id=data.get('attendee_id')
         )
         db.session.add(new_review)
         db.session.commit()
         return new_review.to_dict(), 201
+    
+    
+    
 
+
+
+    
+        
 api.add_resource(Reviews, '/reviews',  endpoint='reviews')
 
 
@@ -215,6 +239,28 @@ class EventById(Resource):
             {"Content-Type": "application/json"},
         )
         return response
+# Patch endpoint to update event details
+### PATCH '/events/<int:event_id>'
+class UpdateEvent(Resource):
+    def patch(self, event_id):
+        event = Event.query.get(event_id)
+        if not event:
+            return {"message": "Event not found"}, 404
+
+        data = request.get_json()
+        liked = data.get('liked')
+        done = data.get('done') 
+        if liked is not None:
+            event.liked = liked
+        if done is not None:  
+            event.done = done
+        db.session.commit()
+        return event.to_dict(), 200
+
+api.add_resource(UpdateEvent, '/events/<int:event_id>', endpoint='update_event')
+
+    
+    
 
 
 # list of attendees for a specific organizer
