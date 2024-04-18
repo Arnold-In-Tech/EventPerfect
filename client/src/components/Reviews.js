@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -26,18 +27,31 @@ const Reviews = () => {
         {reviews.map((review) => (
           <div key={review.id} className="bg-white rounded-md shadow-md p-4">
             <p className="text-gray-500 text-md font-bold mt-2">
-              {review.event["name"]}
+              {review.event.name}
             </p>
             <p className="text-gray-600 font-style: italic">"{review.comment}"</p>
             <p className="text-gray-500 ml-32">
-              ~ {review.attendee["full_name"]}
+              ~ {review.attendee.full_name}
             </p>
-            <h3 className="text-sm text-gray-500 font-medium ">Rating: {review.score}/10</h3>
+            <div className="flex items-center">
+              {[...Array(5)].map((_, index) => {
+                const starValue = index + 1;
+                if (review.score >= starValue) {
+                  return <FaStar key={index} className="text-yellow-400" />;
+                } else if (review.score + 0.5 === starValue) {
+                  return <FaStarHalfAlt key={index} className="text-yellow-400" />;
+                } else {
+                  return <FaStar key={index} className="text-gray-300" />;
+                }
+              })}
+              <span className="text-sm text-gray-500 font-medium ml-1">
+                ({review.score}/5)
+              </span>
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
-};
-
+}
 export default Reviews;
