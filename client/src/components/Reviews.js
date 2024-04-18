@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { MdReviews } from "react-icons/md";
+import { IoMdContact } from "react-icons/io";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -27,13 +28,13 @@ const Reviews = () => {
       <div className="grid grid-cols-1 p-28 space-y-6">
         {reviews.map((review) => (
           <div key={review.id} className="bg-white rounded-md shadow-md p-4">
+            <p className="text-fourth ">
+            <IoMdContact className="inline mr-4 text-4xl"/>{review.attendee.full_name}
+            </p>
             <p className="text-fourth text-md font-bold mt-2">
               {review.event.name}
             </p>
             <p className="text-fourth font-style: italic">"{review.comment}"</p>
-            <p className="text-fourth ml-72">
-              ~ {review.attendee.full_name}
-            </p>
             <div className="flex items-center">
               {[...Array(5)].map((_, index) => {
                 const starValue = index + 1;
