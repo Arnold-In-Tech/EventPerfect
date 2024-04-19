@@ -1,10 +1,10 @@
 # EventPerfect
 
-## Description
+# Description
 eventperfect is a platform that enables organizers to create, manage, and promote their events efficiently, while providing attendees with a user-friendly interface for discovering, registering, and engaging with events. 
 
 
-## Features
+# Features
 
 - login /sign in features
 - navbar
@@ -13,7 +13,7 @@ eventperfect is a platform that enables organizers to create, manage, and promot
 - create events
 - review section
 
-## Installation
+# Installation
 
 To install eventperfect Project, follow these steps:
 
@@ -22,7 +22,7 @@ To install eventperfect Project, follow these steps:
 3. Install dependencies: `npm install`
 4. Start the application: `npm start`
 
-## Usage
+# Usage
 
 Once installed, you can start using event perfect immediately. Here are some basic commands:
 
@@ -31,7 +31,7 @@ for an organizer you can create and have editing rights for the event created.
 for an attendee you can attend an event after signing in and later can leave reviews of the said event.
 
 
-## Contributing
+# Contributing
 
 We welcome contributions from the community. To contribute to event perfect, follow these steps:
 
@@ -43,7 +43,7 @@ We welcome contributions from the community. To contribute to event perfect, fol
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for more details on our code of conduct, and the process for submitting pull requests.
 
-## License
+# License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
