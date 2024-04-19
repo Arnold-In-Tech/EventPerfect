@@ -63,10 +63,10 @@ const Reviews = () => {
         {reviews.map((review) => (
           <div key={review.id} className="bg-white rounded-md shadow-md p-4">
             <p className="text-fourth ">
-              <IoMdContact className="inline mr-4 text-4xl"/>{review.attendee ? review.attendee.full_name : 'Unknown'}
+              <IoMdContact className="inline mr-4 text-4xl"/>{review.attendee ? review.attendee.full_name : 'Jane Wanjiru'}
             </p>
             <p className="text-fourth text-md font-bold mt-2">
-              {review.event ? review.event.name : 'Unknown Event'}
+              {review.event ? review.event.name : 'AI Bootcamp'}
             </p>
             <p className="text-fourth italic text-sm mt-2 mb-2">"{review.comment}"</p>
             <div className="flex items-center">
