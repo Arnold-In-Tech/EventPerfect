@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function CreateEvent() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '',
     logo: '',
@@ -18,26 +20,50 @@ function CreateEvent() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('/events', formData);
-      console.log(response.data); // Log the created event
-      // Clear form fields after successful submission
-      setFormData({
-        title: '',
-        logo: '',
-        name: '',
-        location: '',
-        period: '',
-        event_description: '',
-        organizer_id: '',
-        attendee_id: '',
+  // Handle post request
+  const handleSubmit = (e) => {
+  e.preventDefault();
+  fetch("/createEvents", {
+      method: 'POST',
+      body: JSON.stringify({
+        title: formData.title,
+        logo: formData.logo,
+        name: formData.name,
+        location: formData.location,
+        period: formData.period,
+        event_description: formData.event_description,
+        organizer_id: formData.organizer_id,
+        attendee_id: formData.attendee_id,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+  })
+      .then((res) => {
+        return [res.json(), res.status]})
+      .then((post) => {
+        if (post[1] === 201) {
+          alert(formData.title + " event successfully created.")
+          setFormData({
+            title: '',
+            logo: '',
+            name: '',
+            location: '',
+            period: '',
+            event_description: '',
+            organizer_id: '',
+            attendee_id: '',
+          });
+        }else{
+          alert("Error 401: " + formData.title + " event creation Unsuccessfull\n Please Login or Sign Up")
+          navigate("/login")
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
-    } catch (error) {
-      console.error('Error creating event:', error);
-    }
-  };
+  }
+
 
   return (
     <div className="max-w-2xl ml-8">
