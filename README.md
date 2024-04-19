@@ -36,7 +36,7 @@ for an attendee you can attend an event after signing in and later can leave rev
 We welcome contributions from the community. To contribute to event perfect, follow these steps:
 
 1. Fork the repository
-2. Create a new branch: `git checkout -b feature/new-feature`
+2. Create a new branch: `git checkout -b feature`
 3. Make your changes and commit them: `git commit -am 'Add new feature'`
 4. Push to the branch: `git push origin feature/new-feature`
 5. Submit a pull request
