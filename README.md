@@ -26,9 +26,9 @@ To install eventperfect Project, follow these steps:
 
 Once installed, you can start using event perfect immediately. Here are some basic commands:
 
-- `login` as either an organizer or atttendee to access the home page 
-for an organizer you can create and have editing rights for the event created
-for an attendee you can attend an event after signing in and later can leave reviews of the said event
+- `login` as either an organizer or atttendee to access the home page .
+for an organizer you can create and have editing rights for the event created.
+for an attendee you can attend an event after signing in and later can leave reviews of the said event.
 
 
 ## Contributing
