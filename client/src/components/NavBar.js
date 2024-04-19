@@ -1,7 +1,20 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  
+  const navigate = useNavigate();
+
+  function handleLogout() {
+      fetch("/logout", {
+      method: "DELETE",
+      }).then(() => {
+          alert("You have Logged Out, Goodbye!")
+          navigate("/");
+      });
+  }
+
   return (
     <header className="min-w-[1000px]">
       <div className="flex bg-black text-primary h-[60px] mb-1">
@@ -36,6 +49,9 @@ const NavBar = () => {
         </div>
         {/* Right */}
         <div className="flex items-center m-4 text-white">
+          <div onClick={handleLogout} className="pr-4 pl-4 text-sm xl:text-base font-bold cursor-pointer">
+              Log out
+          </div>
           <div className="pr-4 pl-4">
             <p className="text-xs xl:text-sm ">Hello, sign in</p>
             <Link

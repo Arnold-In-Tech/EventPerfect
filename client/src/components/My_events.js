@@ -10,7 +10,7 @@ function MyEvents() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('/events');
+        const response = await axios.get('/myEvents');
         setEvents(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
