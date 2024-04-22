@@ -39,8 +39,8 @@ export default function Login() {
           if (res.status == 200) {
             alert(res.status + ": " + "\nYou are now Logged In!")
             navigate("/create_event");
-          }else if (res.status == 401) {
-            alert(res.status + ": " + "\nYou are already Logged In!")
+          // }else if (res.status == 401) {
+          //   alert(res.status + ": " + "\nYou are already Logged In!")
           }else{
             alert("Error " + res.status + ": " + res.statusText + "\nInvalid username or password. \nTry Again")
           }

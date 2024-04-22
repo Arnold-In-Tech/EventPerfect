@@ -95,8 +95,8 @@ class CheckSession(Resource):
 class Login(Resource):
     def post(self):
 
-        if session.get('organizer_id') or session.get('attendee_id'):
-            return {'error': 'Unauthorized: You are Logged in !!'}, 401
+        # if session.get('organizer_id') or session.get('attendee_id'):
+        #     return {'error': 'Unauthorized: You are Logged in !!'}, 401
 
         username = request.get_json()['username']
         password = request.get_json()['password']
