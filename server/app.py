@@ -8,6 +8,7 @@ from flask import jsonify
 from config import app, db, api
 from models import Organizer, Attendee, Event, Review
 
+
 @app.before_request				
 def check_if_logged_in():		
     open_access_list = [
@@ -17,14 +18,15 @@ def check_if_logged_in():
         'logout',
         'home',
         'events',
-        'attendees',    # comment this out after creating front-end login
-        'organizers',   # comment this out after creating front-end login
-        'reviews',       # comment this out after creating front-end login
-        'eventbyids',   # same
-        'organizer_attendees_by_ids', # same 
-        'event_attendees_by_ids'    # same
+        # 'createEvents',
+        'attendees',   
+        'organizers',   
+        'reviews',      
+        'eventbyids',   
+        'organizer_attendees_by_ids', 
+        'event_attendees_by_ids'    
     ]				
-    if (request.endpoint) not in open_access_list and (not session.get('user_id')):
+    if (request.endpoint) not in open_access_list and (not session.get('organizer_id')):
         return {'error': '401 Unauthorized'}, 401
 
 
@@ -92,6 +94,9 @@ class CheckSession(Resource):
 
 class Login(Resource):
     def post(self):
+
+        # if session.get('organizer_id') or session.get('attendee_id'):
+        #     return {'error': 'Unauthorized: You are Logged in !!'}, 401
 
         username = request.get_json()['username']
         password = request.get_json()['password']
@@ -173,90 +178,79 @@ class Events(Resource):
         return response
 
 
+### create /createEvents
+class CreateEvents(Resource):
+    
+    def post(self):
+        data = request.get_json()
+        new_event = Event(
+            title=data.get('title'),
+            logo=data.get('logo'),
+            name=data.get('name'),
+            location=data.get('location'),
+            period=data.get('period'),
+            event_description=data.get('event_description'),
+            organizer_id=data.get('organizer_id'),
+            attendee_id=data.get('attendee_id')
+        )
+        db.session.add(new_event)
+        db.session.commit()
+        return new_event.to_dict(), 201
+    
+api.add_resource(CreateEvents, '/createEvents',  endpoint='createEvents')
+
+
+
 # List of reviews
 ### GET /reviews
 class Reviews(Resource):
     def get(self):
         reviews = [review.to_dict() for review in Review.query.all()]
-
-        # Return reviews as JSON using Flask's jsonify
-        # return jsonify(reviews), 200
         response = make_response(
             jsonify(reviews),
             200,
             {"Content-Type": "application/json"},
         )
         return response
+
+    def post(self):
+        data = request.get_json()
         
-
-
-
-# Event by ID
-### GET '/event/<int:id>'
-class EventById(Resource):
-    def get(self, id):
-        event = Event.query.filter(Event.id==id).first()
-
-        event_dict = event.to_dict()
-
-        response = make_response(
-            event_dict,
-            200,
-            {"Content-Type": "application/json"},
+        new_review = Review(
+            score=data.get('score'),
+            comment=data.get('comment'),
+            event_id=data.get('events.names'),
+            attendee_id=data.get('attendees.full_name')
         )
-        return response
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict(), 201
 
 
-# list of attendees for a specific organizer
-### GET /organizer/attendees/<int:id>
-class Organizer_attendees_by_id(Resource):
-    def get(self, id):
-        organizer = Organizer.query.filter(Organizer.id==id).first()
 
-        # use association proxy to get attendees for an organiser through events
-        attendees = [attendee.to_dict(rules=("-events",)) for attendee in organizer.attendees]
+# list of events for a specific organizer (My_events)
+### GET /myEvents
+class Organizer_events(Resource):
+    def get(self):
 
-        response = make_response(
-            attendees,
-            200,
-            {"Content-Type": "application/json"},
+        if session.get('organizer_id'):            
+            events = Event.query.filter(Event.organizer_id == session['organizer_id']).all()
+            response = make_response(
+                [event.to_dict() for event in events],
+                200,
+                {"Content-Type": "application/json"},
             )
-        return response
-    
-
-# list of attendees for a specific event
-### GET /event/attendees/<int:id>
-class Event_attendees_by_id(Resource):
-    def get(self, id):
-        event = Event.query.filter(Event.id==id).first()
-
-        # use association proxy to get attendees for an organiser through events
-        attendees = [attendee.to_dict(rules=("-reviews",)) for attendee in event.attendees]
-
-        response = make_response(
-            attendees,
-            200,
-            {"Content-Type": "application/json"},
+            return response
+        elif session.get('attendee_id'): 
+            events = Event.query.filter(Event.attendee_id == session['attendee_id']).all()
+            response = make_response(
+                [event.to_dict() for event in events],
+                200,
+                {"Content-Type": "application/json"},
             )
-        return response
-
-
-# List of reviews for a specific event
-### GET /event/reviews
-class Event_attendees_by_id(Resource):
-    def get(self, id):
-        event = Event.query.filter(Event.id==id).first()
-
-        # use association proxy to get attendees for an organiser through events
-        attendees = [attendee.to_dict(rules=("-reviews",)) for attendee in event.attendees]
-
-        response = make_response(
-            attendees,
-            200,
-            {"Content-Type": "application/json"},
-            )
-        return response
-
+            return response
+        else:
+            return {'error': 'Unauthorized'}, 401
 
 
 api.add_resource(Home, '/', endpoint='home' )    
@@ -267,10 +261,8 @@ api.add_resource(Logout, '/logout', endpoint='logout')
 api.add_resource(Organizers, '/organizers', endpoint='organizers')
 api.add_resource(Attendees, '/attendees', endpoint = 'attendees')
 api.add_resource(Events, '/events', endpoint = 'events')
-api.add_resource(Reviews, '/reviews',  endpoint = 'reviews')
-api.add_resource(EventById, '/event/<int:id>', endpoint='eventbyids')
-api.add_resource(Organizer_attendees_by_id, '/organizer/attendees/<int:id>', endpoint='organizer_attendees_by_ids')
-api.add_resource(Event_attendees_by_id, '/event/attendees/<int:id>', endpoint='event_attendees_by_ids')
+api.add_resource(Reviews, '/reviews',  endpoint='reviews')
+api.add_resource(Organizer_events, '/myEvents',  endpoint='Organizer_events')
 
 
 if __name__ == '__main__':

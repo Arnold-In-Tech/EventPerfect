@@ -3,10 +3,10 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        primary: '#353535',
-        secondary: '#FFC107', 
+        primary: '#F3FCF0',
+        secondary: '#3A405A', 
         third: '#FFFFFF', 
-        fourth: '#D0D0D0'
+        fourth: '#0000'
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
