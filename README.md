@@ -86,15 +86,15 @@ We welcome contributions from the community. To contribute to evento, follow the
 1. Fork the repository
 2. Create a new branch: 
 ```bash
-git checkout -b feature
+git checkout -b ft-newFeatureName
 ```
 3. Make your changes and commit them: 
 ```bash
-git commit -am 'Add new feature'
+git commit -m "Add new information"
 ```
 4. Push to the branch: 
 ```bash
-git push origin feature/new-feature
+git push origin ft-newFeatureName
 ```
 5. Submit a pull request
 
